@@ -61,7 +61,7 @@ Now we want to see if ADCs actually fulfill their role as carries.
 
 This graph displays the percentiles of damageshares for each position. Notice that ADCs have the highest damage share at each breakpoint (ex. 25th percentile, median, max, etc.) which is a clear indicator that they are indeed the carries of their games.
 
-We are also interested in if Lucian has a significant playrate. If he is picked in very few games, it may be an indication that he is only useful within certain situations which may not be representative of all games played.
+We are also interested in if *Lucian* has a significant playrate. If he is picked in very few games, it may be an indication that he is only useful within certain situations which may not be representative of all games played.
 
 <iframe src="assets/adc_pickrate.html" width=800 height=600 frameBorder=0></iframe>
 
