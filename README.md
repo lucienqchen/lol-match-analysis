@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "League of Legends Competitive Matches Exploratory Data Analysis"
-permalink: /projects/lol-match-analysis
+permalink: /lol-match-analysis
 ---
 
 # League of Legends Competitive Matches Exploratory Data Analysis
