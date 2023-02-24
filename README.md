@@ -77,6 +77,8 @@ Here is the distribution of total variation distances using a permutation test, 
 
 <iframe src="assets/missingness_tvd_with_observed.html" width=800 height=600 frameBorder=0></iframe>
 
+As we can see the likelihood of having a TVD that high is 0 and so the values in the golddiffat10 columns are likely not missing at random.
+
 ## Performing a Hypothesis Test
 
 Let's finally answer our question:
