@@ -104,3 +104,7 @@ We observe that Lucian has a 53.35% win rate accross 1149 games. We want to see 
 The chance that we would see a winrate that is just as great or greater than Lucian's winrate difference is 1.33% across 10,000 simulations which is rather low.
 
 We will reject the null at the 95% confidence level since it is so rare to see a win rate as high as Lucian's which suggests that he may possibly be a better carry.
+
+## Key Finding
+
+The data suggests that Lucian may be a better carry, however his overall winrate is biased by his outperformance on the blue side. With this in mind, there may be extraneous factors that affect his performance relative to other ADCs.
