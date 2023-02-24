@@ -1,9 +1,3 @@
----
-layout: default
-title: "League of Legends Competitive Matches Exploratory Data Analysis"
-permalink: /lol-match-analysis
----
-
 # League of Legends Competitive Matches Exploratory Data Analysis
 
 by Lucien Chen
@@ -53,19 +47,33 @@ Here are the columns I kept for the analysis and what they represent:
 
 And here is what the first few rows of the cleaned up dataset look like:
 
+| gameid                | datacompleteness   | league   | side   | position   | champion   | win   |   kills |   deaths |   assists |   damagetochampions |   damageshare |   earnedgold |   golddiffat10 |   xpdiffat10 |
+|:----------------------|:-------------------|:---------|:-------|:-----------|:-----------|:------|--------:|---------:|----------:|--------------------:|--------------:|-------------:|---------------:|-------------:|
+| ESPORTSTMNT01_2690210 | True               | LCK CL   | Blue   | top        | Renekton   | False |       2 |        3 |         2 |               15768 |     0.278784  |         7164 |             52 |          -44 |
+| ESPORTSTMNT01_2690210 | True               | LCK CL   | Blue   | jng        | Xin Zhao   | False |       2 |        5 |         6 |               11765 |     0.208009  |         5368 |            485 |          432 |
+| ESPORTSTMNT01_2690210 | True               | LCK CL   | Blue   | mid        | LeBlanc    | False |       2 |        2 |         3 |               14258 |     0.252086  |         5945 |            162 |           71 |
+| ESPORTSTMNT01_2690210 | True               | LCK CL   | Blue   | bot        | Samira     | False |       2 |        4 |         2 |               11106 |     0.196358  |         6835 |            296 |          265 |
+| ESPORTSTMNT01_2690210 | True               | LCK CL   | Blue   | sup        | Leona      | False |       1 |        5 |         6 |                3663 |     0.0647631 |         2908 |            528 |         -587 |
+
+
+Now we want to see if ADCs actually fulfill their role as carries.
 <iframe src="assets/position_damageshare.html" width=800 height=600 frameBorder=0></iframe>
 
-This graph displays the percentiles of damageshares for each position.
+This graph displays the percentiles of damageshares for each position. Notice that ADCs have the highest damage share at each breakpoint (ex. 25th percentile, median, max, etc.) which is a clear indicator that they are indeed the carries of their games.
+
+We are also interested in if Lucian has a significant playrate. If he is picked in very few games, it may be an indication that he is only useful within certain situations which may not be representative of all games played.
 
 <iframe src="assets/adc_pickrate.html" width=800 height=600 frameBorder=0></iframe>
 
-<iframe src="assets/adc_wr.html" width=800 height=600 frameBorder=0></iframe>
+It looks like *Lucian* has about a 5% pickrate. While that's not the highest pickrate compared to all the other ADCs, it is still quite a large number of games so we can proceed.
 
 ## Dealing with Missingness
 
-It looks like there are a lot of missing values for golddiffat10 and xpdiffat10. Since either of these columns represent how well Lucian does relative his opponents we can just focus in on the missingness of just golddiffat10. Let's take a look at exactly how many missing values there are in the entire dataframe and try to figure out why that is.
+We are trying to find metrics to quantify whether or not Lucian is a better ADC. We are interested in relative statistics, since something like overall damage dealt will naturally increase with longer games. It looks like there are a lot of missing values for golddiffat10 and xpdiffat10. Since either of these columns represent how well Lucian does relative his opponents we can just focus in on the missingness of just golddiffat10. Let's take a look at exactly how many missing values there are in the entire dataframe and try to figure out why that is
 
 <iframe src="assets/missingness_tvd.html" width=800 height=600 frameBorder=0></iframe>
+
+Here is the distribution of total variation distances using a permutation test, where we randomly shuffled the datacompleteness column. The TVDs seem to be low so let's plot our observed TVD of 1 to see how drastic the difference is.
 
 <iframe src="assets/missingness_tvd_with_observed.html" width=800 height=600 frameBorder=0></iframe>
 
@@ -77,13 +85,19 @@ __*Is Lucian a better carry than other ADCs?*__
 
 We are going to measure ability to carry by revisiting winrate. If a champion wins more often than other champions, on average, there is a high likelihood that the champion is more effective in their role, i.e better at carrying.
 
+Let's take a look at the win rates:
+
+<iframe src="assets/adc_wr.html" width=800 height=600 frameBorder=0></iframe>
+
+It looks like *Lucian's* win rate is quite high. The graph shows the winrates for each ADC depending on which side their team played on. It looks like *Lucian* has average performance on red side, but has strong outperformance on blue side causing his average win rate to spike.
+
 Let's define our hypotheses:
  - Null Hypothesis: Lucian's winrate is the same as other ADCs and his high winrate is purely due to random chance.
  - Alternative Hypothesis: Lucian's winrate is higher than other ADcs, it is not just due to random chance.
 
 To test this out, we'll run a hypothesis test at the 95% confidence level.
 
-We can see that Lucian has a 53.35% win rate accross 1149 games. We want to see if his win rate is statistically higher from the rest of the ADCs, so we will randomly select 1149 games and find the winrate of the sample which will be our test statistic.
+We observe that Lucian has a 53.35% win rate accross 1149 games. We want to see if his win rate is statistically higher from the rest of the ADCs, so we will randomly select 1149 games and find the winrate of the sample which will be our test statistic.
 
 <iframe src="assets/wr_hyp_test.html" width=800 height=600 frameBorder=0></iframe>
 
