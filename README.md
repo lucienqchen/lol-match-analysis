@@ -71,11 +71,11 @@ It looks like *Lucian* has about a 5% pickrate. While that's not the highest pic
 
 We are trying to find metrics to quantify whether or not Lucian is a better ADC. We are interested in relative statistics, since something like overall damage dealt will naturally increase with longer games. It looks like there are a lot of missing values for golddiffat10 and xpdiffat10. Since either of these columns represent how well Lucian does relative his opponents we can just focus in on the missingness of just golddiffat10. Let's take a look at exactly how many missing values there are in the entire dataframe and try to figure out why that is
 
-<iframe src="assets/missingness_tvd.html" width=800 height=600 frameBorder=0></iframe>
+<iframe src="assets/missingness_tvd.html" width=900 height=600 frameBorder=0></iframe>
 
 Here is the distribution of total variation distances using a permutation test, where we randomly shuffled the datacompleteness column. The TVDs seem to be low so let's plot our observed TVD of 1 to see how drastic the difference is.
 
-<iframe src="assets/missingness_tvd_with_observed.html" width=800 height=600 frameBorder=0></iframe>
+<iframe src="assets/missingness_tvd_with_observed.html" width=900 height=600 frameBorder=0></iframe>
 
 As we can see the likelihood of having a TVD that high is 0 and so the values in the golddiffat10 columns are likely not missing at random.
 
@@ -87,7 +87,10 @@ __*Is Lucian a better carry than other ADCs?*__
 
 We are going to measure ability to carry by revisiting winrate. If a champion wins more often than other champions, on average, there is a high likelihood that the champion is more effective in their role, i.e better at carrying.
 
-Let's take a look at the win rates:
+Let's take a look at the win rates as well as how many games each champion appeared in:
+
+| champion     |     mean |   count |\n|:-------------|---------:|--------:|\n| Aphelios     | 0.490725 |    4043 |\n| Ashe         | 0.455446 |     303 |\n| Caitlyn      | 0.527548 |     726 |\n| Draven       | 0.500938 |     533 |\n| Ezreal       | 0.462601 |    1738 |\n| Jhin         | 0.470588 |    1156 |\n| Jinx         | 0.502806 |    3920 |\n| Kai'Sa       | 0.479    |    1000 |\n| Kalista      | 0.524338 |    1171 |\n| Kog'Maw      | 0.421965 |     173 |\n| Lucian       | 0.533507 |    1149 |\n| Miss Fortune | 0.519481 |     539 |\n| Nilah        | 0.492754 |      69 |\n| Samira       | 0.503571 |     280 |\n| Senna        | 0.524331 |     822 |\n| Seraphine    | 0.521341 |     328 |\n| Sivir        | 0.522556 |    1064 |\n| Tristana     | 0.494737 |     475 |\n| Twitch       | 0.496599 |     441 |\n| Varus        | 0.477431 |     576 |\n| Vayne        | 0.453901 |     141 |\n| Xayah        | 0.482523 |    1173 |\n| Zeri         | 0.533549 |    2474 |\n| Ziggs        | 0.420513 |     195 |
+
 
 <iframe src="assets/adc_wr.html" width=800 height=600 frameBorder=0></iframe>
 
