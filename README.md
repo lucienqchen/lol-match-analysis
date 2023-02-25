@@ -114,7 +114,7 @@ Let's take a look at the win rates as well as how many games each champion appea
 | Vayne        | 0.453901 |     141 |
 | Xayah        | 0.482523 |    1173 |
 | Zeri         | 0.533549 |    2474 |
-| Ziggs        | 0.420513 |     195 |"
+| Ziggs        | 0.420513 |     195 |
 
 <iframe src="assets/adc_wr.html" width=800 height=600 frameBorder=0></iframe>
 
