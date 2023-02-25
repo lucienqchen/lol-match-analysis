@@ -57,7 +57,7 @@ And here is what the first few rows of the cleaned up dataset look like:
 
 
 Now we want to see if ADCs actually fulfill their role as carries.
-<iframe src="assets/position_damageshare.html" width=800 height=600 frameBorder=0></iframe>
+<iframe src="assets/position_damageshare.html" width=1000 height=600 frameBorder=0></iframe>
 
 This graph displays the percentiles of damageshares for each position. Notice that ADCs have the highest damage share at each breakpoint (ex. 25th percentile, median, max, etc.) which is a clear indicator that they are indeed the carries of their games.
 
@@ -77,7 +77,7 @@ Here is the distribution of total variation distances using a permutation test, 
 
 <iframe src="assets/missingness_tvd_with_observed.html" width=900 height=600 frameBorder=0></iframe>
 
-As we can see the likelihood of having a TVD that high is 0 and so the values in the golddiffat10 columns are likely not missing at random.
+As we can see the likelihood of having a TVD that high is 0 and so the values in the golddiffat10 columns are likely not missing at random, or NMAR, since it tells us which columns have incomplete data.
 
 ## Performing a Hypothesis Test
 
@@ -126,7 +126,7 @@ Let's define our hypotheses:
 
 To test this out, we'll run a hypothesis test at the 95% confidence level.
 
-We observe that Lucian has a 53.35% win rate accross 1149 games. We want to see if his win rate is statistically higher from the rest of the ADCs, so we will randomly select 1149 games and find the winrate of the sample which will be our test statistic.
+We observe that *Lucian* has a 53.35% win rate accross 1149 games, the number of games he was played in. We want to see if his win rate is statistically higher from the rest of the ADCs, so we will randomly select 1149 games and find the winrate of the sample which will be our test statistic.
 
 <iframe src="assets/wr_hyp_test.html" width=800 height=600 frameBorder=0></iframe>
 
